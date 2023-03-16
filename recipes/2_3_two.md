@@ -24,7 +24,7 @@ verified grammer returns true or false
 grammer_checker("Hello world.") => true
 grammer_checker("hello world.") => false
 grammer_checker("Hello world") => false
-grammer_checker() => false
+grammer_checker("") => false
 grammer_checker("Hello world!") => true
 grammer_checker("Hello world?") => true
 
