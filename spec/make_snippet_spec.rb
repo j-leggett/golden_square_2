@@ -1,4 +1,4 @@
-require "diary"
+require "make_snippet"
 
 describe "diary make_snippet method" do
   describe "test strings containing under six words" do
