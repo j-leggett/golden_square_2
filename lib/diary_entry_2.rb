@@ -1,27 +1,46 @@
 class DiaryEntry
   def initialize(title, contents) # title, contents are strings
-    # ...
+    @title = title
+    @contents = contents
+    @finish = 0
+
   end
 
   def title
-    # Returns the title as a string
+    @title
   end
 
   def contents
-    # Returns the contents as a string
+    @contents
   end
 
-  def count_words
-    # Returns the number of words in the contents as an integer
+  def count_words_entry
+    @contents.split(" ").length
   end
 
-  def reading_time(wpm) # wpm is an integer representing
+  def reading_time(wpm) 
+    (count_words_entry.to_f / wpm.to_f).ceil
+    # wpm is an integer representing
                         # the number of words the user can read per minute
     # Returns an integer representing an estimate of the reading time in minutes
-    # for the contents at the given wpm.
+    # forthe contents at the given wpm.
   end
 
-  def reading_chunk(wpm, minutes) # `wpm` is an integer representing the number
+  def reading_chunk(wpm, minutes)
+    number_of_words = wpm * minutes
+    start_from = @finish
+    end_at = start_from + number_of_words
+  
+    chunk = @contents.split[start_from...end_at].join(" ")
+    
+    if end_at >= count_words
+      @finish = 0
+    else
+      @finish = number_of_words
+    end
+    
+  chunk
+    # `wpm` is an integer representing the number
                                   # of words the user can read per minute
                                   # `minutes` is an integer representing the
                                   # number of minutes the user has to read
